@@ -729,7 +729,7 @@ namespace OlahCitra.Core
         {
             Bitmap outImage = new Bitmap(input.Width, input.Height);
 
-            using (var image = input.ToImage<Bgr, byte>().Clone())
+            using (var image = input.ToImage<Bgr, byte>())
             using (var imageHsv = image.Convert<Hsv, int>())
             using (var mask = new UMat())
             using (var result = new Image<Bgr, byte>(image.Width, image.Height))
