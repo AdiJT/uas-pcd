@@ -89,28 +89,36 @@ namespace UAS_PCD
 
             foreach (var result in results)
             {
-                var colorCorrected = ImageProcessing.ColorCorrection(result.Original, 10, 10, 20);
+                var colorCorrected = ImageProcessing.ColorCorrection(result.Original, 0, 0, 5);
 
-                var segmentedImages = new List<Bitmap>();
+                var segmentationResult = new List<(Bitmap mask, Bitmap result)>();
+
                 foreach (var color in options.DaftarWarnaBangunan)
-                    segmentedImages.Add(ImageProcessing.HSVColorSegmentation(colorCorrected, color.Low, color.High));
+                    segmentationResult.Add(ImageProcessing.HSVColorSegmentation(colorCorrected, color.Low, color.High));
 
-                var otsus = segmentedImages.Select(i => ImageProcessing.OtsuCv(i)).ToList();
-                var openings = otsus.Select(i => ImageProcessing.Opening(i, options.OpeningKernelSize)).ToList();
+                var masks = segmentationResult.Select(i => i.mask).ToList();
+                var segmentedImage = segmentationResult.Select(i => i.result).ToList();
+                var openings = masks.Select(i => ImageProcessing.Opening(i, options.OpeningKernelSize)).ToList();
                 var closings = openings.Select(i => ImageProcessing.Closing(i, options.ClosingKernelSize)).ToList();
 
-                var combination = ImageProcessing.CombineWithOr(closings);
+                var blobResults = closings.Select(
+                    i => ImageProcessing.BlobDetection(i, options.MinimalBlobSize)
+                ).ToList();
 
-                (var blobImage, var blobs) = ImageProcessing.BlobDetection(combination, options.MinimalBlobSize);
+                var blobImages = blobResults.Select(r => r.Item1).ToList();
+                var blobs = blobResults.SelectMany(r => r.Item2).ToList();
+
+                var combination = ImageProcessing.CombineWithOr(blobImages);
+
                 var hasil = ImageProcessing.HitungLuas(result.Original, blobs, _skala);
 
                 result.Step.Add("Color Correction (R:10, G:10, B:20)", colorCorrected);
-                result.Step.Add("HSV Color Segmentation", CombineImage(segmentedImages.ToList(), 4, result.Original.Size));
-                result.Step.Add("Ostu Thresholding Segmentation", CombineImage(otsus, 4, result.Original.Size));
+                result.Step.Add("HSV Color Segmentation", CombineImage(segmentedImage, 4, result.Original.Size));
+                result.Step.Add("Mask", CombineImage(masks, 4, result.Original.Size));
                 result.Step.Add($"Opening {options.OpeningKernelSize} X {options.OpeningKernelSize}", CombineImage(openings, 4, result.Original.Size));
                 result.Step.Add($"Closing {options.ClosingKernelSize} X {options.ClosingKernelSize}", CombineImage(closings, 4, result.Original.Size));
+                result.Step.Add($"Blob Detection", CombineImage(blobImages, 4, result.Original.Size));
                 result.Step.Add("Kombinasi", combination);
-                result.Step.Add($"Blob Detection", blobImage);
                 result.Step.Add($"Hasil", hasil);
                 result.Hasil = hasil;
 

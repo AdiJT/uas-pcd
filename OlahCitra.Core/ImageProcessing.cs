@@ -725,32 +725,34 @@ namespace OlahCitra.Core
             return dictionary;
         }
 
-        public static Bitmap HSVColorSegmentation(Bitmap input, int[] low, int[] high)
+        public static (Bitmap mask, Bitmap result) HSVColorSegmentation(Bitmap input, int[] low, int[] high)
         {
+            Bitmap maskImage = new Bitmap(input.Width, input.Height);
             Bitmap outImage = new Bitmap(input.Width, input.Height);
+
 
             using (var image = input.ToImage<Bgr, byte>())
             using (var imageHsv = image.Convert<Hsv, int>())
-            using (var mask = new UMat())
+            using (var mask = new Image<Gray, byte>(image.Width, image.Height))
             using (var result = new Image<Bgr, byte>(image.Width, image.Height))
             {
                 var lowHue = new ScalarArray(new MCvScalar(low[0], low[1], low[2]));
                 var highHue = new ScalarArray(new MCvScalar(high[0], high[1], high[2]));
                 CvInvoke.InRange(imageHsv, lowHue, highHue, mask);
                 CvInvoke.BitwiseAnd(image, image, result, mask);
+
+                maskImage = mask.ToBitmap();
                 outImage = result.ToBitmap();
             }
 
-            return outImage;
+            return (maskImage, outImage);
         }
 
-        public static Bitmap HSVColorSegmentation(Bitmap input, int hue, int hueRange)
+        public static (Bitmap mask, Bitmap result) HSVColorSegmentation(Bitmap input, int hue, int hueRange)
         {
             var lowHue = new int[] { Math.Max(hue - hueRange, 0), 30, 30 };
             var highHue = new int[] { Math.Min(hue + hueRange, 255), 255, 255 };
-            Bitmap outImage = HSVColorSegmentation(input, lowHue, highHue);
-
-            return outImage;
+            return HSVColorSegmentation(input, lowHue, highHue);
         }
 
         public static (Bitmap, List<List<Point>>) BlobDetection(Bitmap input, int minJmlPiksel)
@@ -792,19 +794,19 @@ namespace OlahCitra.Core
 
                 //Pelabelan
                 var random = new Random();
-                var colorLabel = new List<Color>();
+                var colorLabels = new List<Color>();
                 for (int i = 0; i < listBlob.Count; i++)
                 {
                     var randR = random.Next(0, 256);
                     var randG = random.Next(0, 256);
                     var randB = random.Next(0, 256);
-                    colorLabel.Add(Color.FromArgb(randR, randG, randB));
+                    colorLabels.Add(Color.FromArgb(randR, randG, randB));
                 }
 
                 for (int i = 0; i < listBlob.Count; i++)
                     foreach (var point in listBlob[i])
                     {
-                        resultImage[point.Y, point.X] = new Bgr(colorLabel[i].B, colorLabel[i].G, colorLabel[i].R);
+                        resultImage[point.Y, point.X] = new Bgr(colorLabels[i].B, colorLabels[i].G, colorLabels[i].R);
                     }
 
                 outImage = resultImage.ToBitmap();
@@ -825,29 +827,6 @@ namespace OlahCitra.Core
             {
                 luas.Add((double)blob.Count * skala);
 
-                var minPoint = new Point(int.MaxValue, int.MaxValue);
-                var maxPoint = new Point(0, 0);
-
-                //foreach (var point in blob)
-                //{
-                //    if (point.X < minPoint.X)
-                //        minPoint.X = point.X;
-
-                //    if (point.X > maxPoint.X)
-                //        maxPoint.X = point.X;
-
-                //    if (point.Y < minPoint.Y)
-                //        minPoint.Y = point.Y;
-
-                //    if (point.Y > maxPoint.Y)
-                //        maxPoint.Y = point.Y;
-                //}
-
-                //var width = minPoint.X - maxPoint.X;
-                //var height = maxPoint.Y - maxPoint.Y;
-
-                //var center = new Point(minPoint.X + width / 2, minPoint.Y + height / 2);
-
                 var center = new Point(0, 0);
 
                 foreach (var point in blob)
@@ -862,59 +841,82 @@ namespace OlahCitra.Core
                 centers.Add(center);
             }
 
-            var blobImage = new Bitmap(original.Width, original.Height);
-
-            using (var g = Graphics.FromImage(blobImage))
+            var random = new Random();
+            var colorLabels = new List<Bgr>();
+            for (int i = 0; i < blobs.Count; i++)
             {
-                g.Clear(Color.FromArgb(0, 0, 0));
+                var randR = random.Next(0, 256);
+                var randG = random.Next(0, 256);
+                var randB = random.Next(0, 256);
+                colorLabels.Add(new Bgr(randB, randG, randR));
             }
 
-            foreach (var blob in blobs)
-                foreach (var point in blob)
-                    blobImage.SetPixel(point.X, point.Y, Color.FromArgb(255, 255, 255));
-
-            using (var blobImageGray = blobImage.ToImage<Gray, byte>())
-            using (var countur = new Matrix<byte>(blobImageGray.Rows, blobImageGray.Cols))
             using (var result = original.ToImage<Bgr, byte>())
             {
-                CvInvoke.Canny(blobImageGray, countur, 60, 90);
+                var blobImages = new List<Bitmap>();
+                var kernel = CvInvoke.GetStructuringElement(ElementShape.Rectangle, new Size(5, 5), new Point(-1, -1));
 
-                for (var x = 0; x < countur.Cols; x++)
-                    for(var y = 0; y < countur.Rows; y++)
-                    {
-                        if (countur[y, x] > 0)
-                            result[y, x] = new Bgr(255, 0, 0);
-                    }
-
-                for (var i = 0; i < centers.Count; i++)
+                for(int i = 0; i < blobs.Count; i++)
                 {
-                    var origin = centers[i];
+                    var blob = blobs[i];
 
-                    if((result.Width - origin.X) <= 200)
+                    var image = new Bitmap(original.Width, original.Height);
+                    using(var g = Graphics.FromImage(image))
+                        g.Clear(Color.Black);
+
+                    foreach (var point in blob)
+                        image.SetPixel(point.X, point.Y, Color.White);
+
+                    using (var gray = image.ToImage<Gray, byte>())
+                    using (var countur = new Matrix<byte>(gray.Rows, gray.Cols))
                     {
-                        origin.X -= 230;
-                    }
+                        CvInvoke.Canny(gray, countur, 60, 90);
+                        CvInvoke.Dilate(countur, countur, kernel, new Point(-1, -1), 1, BorderType.Default, new MCvScalar());
 
-                    CvInvoke.PutText(result, $"Luas : {(int)luas[i]} m2", origin, FontFace.HersheyPlain, 2, new MCvScalar(0, 0, 0), 3);
+                        for (var x = 0; x < countur.Cols; x++)
+                            for (var y = 0; y < countur.Rows; y++)
+                            {
+                                if (countur[y, x] > 0)
+                                    result[y, x] = colorLabels[i];
+                            }
+
+                        var origin = centers[i];
+
+                        if ((result.Width - origin.X) <= 200)
+                            origin.X -= 230;
+
+                        CvInvoke.PutText(
+                            result,
+                            $"Luas : {(int)luas[i]} m2",
+                            origin,
+                            FontFace.HersheyPlain,
+                            2,
+                            new MCvScalar(0, 0, 0),
+                            3);
+                    }
                 }
-                
+
                 outImage = result.ToBitmap();
             }
-            
+
             return outImage;
         }
 
         public static Bitmap CombineWithOr(List<Bitmap> originals)
         {
-            var images = originals.Select(b => b.ToImage<Gray, byte>()).ToList();
-            var result = new Mat(images[0].Rows, images[0].Cols, DepthType.Cv8U, 1);
-
-            foreach (var image in images)
+            var images = originals.Select(b => b.ToImage<Bgr, byte>()).ToList();
+            var outImage = new Bitmap(originals[0].Width, originals[0].Height);
+            using (var result = images[0])
             {
-                CvInvoke.BitwiseOr(result, image, result);
+                foreach (var image in images)
+                {
+                    CvInvoke.BitwiseOr(result, image, result);
+                }
+
+                outImage = result.ToBitmap();
             }
 
-            return result.ToBitmap();
+            return outImage;
         }
     }
 }
