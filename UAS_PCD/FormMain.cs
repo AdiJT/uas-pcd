@@ -91,7 +91,7 @@ namespace UAS_PCD
 
             foreach (var result in results)
             {
-                var colorCorrected = ImageProcessing.ColorCorrection(result.Original, 10, 10, 20);
+                var colorCorrected = ImageProcessing.ColorCorrection(result.Original, 0, 0, 5);
 
                 var segmentationResult = new List<(Bitmap mask, Bitmap result)>();
 
