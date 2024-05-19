@@ -86,7 +86,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(545, 424);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(570, 424);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // panel4
@@ -96,7 +96,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(3, 153);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(539, 44);
+            this.panel4.Size = new System.Drawing.Size(564, 44);
             this.panel4.TabIndex = 3;
             // 
             // numericUpDownMinJmlPiksel
@@ -108,7 +108,7 @@
             0,
             0});
             this.numericUpDownMinJmlPiksel.Name = "numericUpDownMinJmlPiksel";
-            this.numericUpDownMinJmlPiksel.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDownMinJmlPiksel.Size = new System.Drawing.Size(162, 20);
             this.numericUpDownMinJmlPiksel.TabIndex = 1;
             this.numericUpDownMinJmlPiksel.Value = new decimal(new int[] {
             5452,
@@ -132,14 +132,14 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(3, 103);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(539, 44);
+            this.panel3.Size = new System.Drawing.Size(564, 44);
             this.panel3.TabIndex = 2;
             // 
             // numericUpDownClosing
             // 
             this.numericUpDownClosing.Location = new System.Drawing.Point(189, 10);
             this.numericUpDownClosing.Name = "numericUpDownClosing";
-            this.numericUpDownClosing.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDownClosing.Size = new System.Drawing.Size(162, 20);
             this.numericUpDownClosing.TabIndex = 1;
             this.numericUpDownClosing.Value = new decimal(new int[] {
             3,
@@ -164,16 +164,16 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(539, 44);
+            this.panel1.Size = new System.Drawing.Size(564, 44);
             this.panel1.TabIndex = 0;
             // 
             // buttonPilihFolder
             // 
             this.buttonPilihFolder.Location = new System.Drawing.Point(449, 15);
             this.buttonPilihFolder.Name = "buttonPilihFolder";
-            this.buttonPilihFolder.Size = new System.Drawing.Size(75, 23);
+            this.buttonPilihFolder.Size = new System.Drawing.Size(102, 23);
             this.buttonPilihFolder.TabIndex = 1;
-            this.buttonPilihFolder.Text = "Pilih Folder";
+            this.buttonPilihFolder.Text = "Pilih Folder Citra";
             this.buttonPilihFolder.UseVisualStyleBackColor = true;
             this.buttonPilihFolder.Click += new System.EventHandler(this.buttonPilihFolder_Click);
             // 
@@ -191,14 +191,14 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 53);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(539, 44);
+            this.panel2.Size = new System.Drawing.Size(564, 44);
             this.panel2.TabIndex = 1;
             // 
             // numericUpDownOpening
             // 
             this.numericUpDownOpening.Location = new System.Drawing.Point(189, 10);
             this.numericUpDownOpening.Name = "numericUpDownOpening";
-            this.numericUpDownOpening.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDownOpening.Size = new System.Drawing.Size(162, 20);
             this.numericUpDownOpening.TabIndex = 1;
             this.numericUpDownOpening.Value = new decimal(new int[] {
             3,
@@ -222,7 +222,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(3, 203);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(539, 168);
+            this.groupBox1.Size = new System.Drawing.Size(564, 168);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Warna Atap Bangunan";
@@ -239,7 +239,7 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(533, 149);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(558, 149);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // dataGridViewHsvColor
@@ -251,7 +251,7 @@
             this.dataGridViewHsvColor.Location = new System.Drawing.Point(3, 53);
             this.dataGridViewHsvColor.Name = "dataGridViewHsvColor";
             this.dataGridViewHsvColor.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewHsvColor.Size = new System.Drawing.Size(527, 93);
+            this.dataGridViewHsvColor.Size = new System.Drawing.Size(552, 93);
             this.dataGridViewHsvColor.TabIndex = 1;
             // 
             // panel5
@@ -261,12 +261,12 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(3, 3);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(527, 44);
+            this.panel5.Size = new System.Drawing.Size(552, 44);
             this.panel5.TabIndex = 0;
             // 
             // buttonHapus
             // 
-            this.buttonHapus.Location = new System.Drawing.Point(368, 14);
+            this.buttonHapus.Location = new System.Drawing.Point(379, 14);
             this.buttonHapus.Name = "buttonHapus";
             this.buttonHapus.Size = new System.Drawing.Size(75, 23);
             this.buttonHapus.TabIndex = 1;
@@ -276,7 +276,7 @@
             // 
             // buttonTambah
             // 
-            this.buttonTambah.Location = new System.Drawing.Point(449, 14);
+            this.buttonTambah.Location = new System.Drawing.Point(470, 14);
             this.buttonTambah.Name = "buttonTambah";
             this.buttonTambah.Size = new System.Drawing.Size(75, 23);
             this.buttonTambah.TabIndex = 0;
@@ -291,12 +291,12 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(3, 377);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(539, 44);
+            this.panel6.Size = new System.Drawing.Size(564, 44);
             this.panel6.TabIndex = 5;
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(336, 12);
+            this.buttonCancel.Location = new System.Drawing.Point(365, 12);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 23);
             this.buttonCancel.TabIndex = 1;
@@ -306,7 +306,7 @@
             // 
             // buttonOk
             // 
-            this.buttonOk.Location = new System.Drawing.Point(123, 12);
+            this.buttonOk.Location = new System.Drawing.Point(149, 12);
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.Size = new System.Drawing.Size(75, 23);
             this.buttonOk.TabIndex = 0;
@@ -318,10 +318,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(545, 424);
+            this.ClientSize = new System.Drawing.Size(570, 424);
             this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "FormOptions";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormOptions";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel4.ResumeLayout(false);

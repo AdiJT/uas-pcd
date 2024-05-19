@@ -57,10 +57,10 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 76F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 450);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 505);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // panel1
@@ -71,15 +71,16 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(794, 34);
+            this.panel1.Size = new System.Drawing.Size(794, 70);
             this.panel1.TabIndex = 0;
             // 
             // buttonSimpan
             // 
             this.buttonSimpan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonSimpan.Location = new System.Drawing.Point(662, 8);
+            this.buttonSimpan.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSimpan.Location = new System.Drawing.Point(640, 18);
             this.buttonSimpan.Name = "buttonSimpan";
-            this.buttonSimpan.Size = new System.Drawing.Size(123, 23);
+            this.buttonSimpan.Size = new System.Drawing.Size(145, 40);
             this.buttonSimpan.TabIndex = 2;
             this.buttonSimpan.Text = "Simpan";
             this.buttonSimpan.UseVisualStyleBackColor = true;
@@ -87,9 +88,10 @@
             // 
             // buttonUji
             // 
-            this.buttonUji.Location = new System.Drawing.Point(138, 3);
+            this.buttonUji.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonUji.Location = new System.Drawing.Point(175, 18);
             this.buttonUji.Name = "buttonUji";
-            this.buttonUji.Size = new System.Drawing.Size(123, 23);
+            this.buttonUji.Size = new System.Drawing.Size(144, 40);
             this.buttonUji.TabIndex = 1;
             this.buttonUji.Text = "Uji";
             this.buttonUji.UseVisualStyleBackColor = true;
@@ -97,11 +99,12 @@
             // 
             // buttonUlang
             // 
-            this.buttonUlang.Location = new System.Drawing.Point(9, 3);
+            this.buttonUlang.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonUlang.Location = new System.Drawing.Point(9, 18);
             this.buttonUlang.Name = "buttonUlang";
-            this.buttonUlang.Size = new System.Drawing.Size(123, 23);
+            this.buttonUlang.Size = new System.Drawing.Size(144, 40);
             this.buttonUlang.TabIndex = 0;
-            this.buttonUlang.Text = "Ulang";
+            this.buttonUlang.Text = "Pengaturan";
             this.buttonUlang.UseVisualStyleBackColor = true;
             this.buttonUlang.Click += new System.EventHandler(this.buttonUlang_Click);
             // 
@@ -118,9 +121,9 @@
             this.Hasil,
             this.StepButton});
             this.dataGridViewHasil.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewHasil.Location = new System.Drawing.Point(3, 43);
+            this.dataGridViewHasil.Location = new System.Drawing.Point(3, 79);
             this.dataGridViewHasil.Name = "dataGridViewHasil";
-            this.dataGridViewHasil.Size = new System.Drawing.Size(794, 374);
+            this.dataGridViewHasil.Size = new System.Drawing.Size(794, 393);
             this.dataGridViewHasil.TabIndex = 1;
             this.dataGridViewHasil.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewHasil_CellClick);
             // 
@@ -166,7 +169,7 @@
             // progressBar1
             // 
             this.progressBar1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.progressBar1.Location = new System.Drawing.Point(3, 423);
+            this.progressBar1.Location = new System.Drawing.Point(3, 478);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(794, 24);
             this.progressBar1.TabIndex = 2;
@@ -175,7 +178,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 505);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "FormMain";
             this.Text = "FormMain";

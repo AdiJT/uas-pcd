@@ -30,16 +30,16 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.buttonUji = new System.Windows.Forms.Button();
             this.buttonPilihFolder = new System.Windows.Forms.Button();
             this.textBoxFolderPath = new System.Windows.Forms.TextBox();
             this.dataGridViewUji = new System.Windows.Forms.DataGridView();
-            this.buttonUji = new System.Windows.Forms.Button();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUji)).BeginInit();
@@ -71,11 +71,23 @@
             this.panel1.Size = new System.Drawing.Size(794, 34);
             this.panel1.TabIndex = 0;
             // 
+            // buttonUji
+            // 
+            this.buttonUji.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonUji.Location = new System.Drawing.Point(681, 7);
+            this.buttonUji.Name = "buttonUji";
+            this.buttonUji.Size = new System.Drawing.Size(91, 23);
+            this.buttonUji.TabIndex = 4;
+            this.buttonUji.Text = "Uji";
+            this.buttonUji.UseVisualStyleBackColor = true;
+            this.buttonUji.Click += new System.EventHandler(this.buttonUji_Click);
+            // 
             // buttonPilihFolder
             // 
-            this.buttonPilihFolder.Location = new System.Drawing.Point(445, 8);
+            this.buttonPilihFolder.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonPilihFolder.Location = new System.Drawing.Point(559, 7);
             this.buttonPilihFolder.Name = "buttonPilihFolder";
-            this.buttonPilihFolder.Size = new System.Drawing.Size(75, 23);
+            this.buttonPilihFolder.Size = new System.Drawing.Size(94, 23);
             this.buttonPilihFolder.TabIndex = 3;
             this.buttonPilihFolder.Text = "Pilih Folder";
             this.buttonPilihFolder.UseVisualStyleBackColor = true;
@@ -85,7 +97,7 @@
             // 
             this.textBoxFolderPath.Location = new System.Drawing.Point(3, 9);
             this.textBoxFolderPath.Name = "textBoxFolderPath";
-            this.textBoxFolderPath.Size = new System.Drawing.Size(433, 20);
+            this.textBoxFolderPath.Size = new System.Drawing.Size(517, 20);
             this.textBoxFolderPath.TabIndex = 2;
             // 
             // dataGridViewUji
@@ -103,16 +115,7 @@
             this.dataGridViewUji.Name = "dataGridViewUji";
             this.dataGridViewUji.Size = new System.Drawing.Size(794, 404);
             this.dataGridViewUji.TabIndex = 1;
-            // 
-            // buttonUji
-            // 
-            this.buttonUji.Location = new System.Drawing.Point(542, 8);
-            this.buttonUji.Name = "buttonUji";
-            this.buttonUji.Size = new System.Drawing.Size(75, 23);
-            this.buttonUji.TabIndex = 4;
-            this.buttonUji.Text = "Uji";
-            this.buttonUji.UseVisualStyleBackColor = true;
-            this.buttonUji.Click += new System.EventHandler(this.buttonUji_Click);
+            this.dataGridViewUji.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewUji_CellContentClick);
             // 
             // Column1
             // 
@@ -156,6 +159,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "FormUji";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormUji";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);

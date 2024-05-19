@@ -100,5 +100,10 @@ namespace UAS_PCD
                 }
             }
         }
+
+        private void dataGridViewUji_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

@@ -216,6 +216,7 @@
             this.Controls.Add(this.panelLowHigh);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "FormTambahWarna";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormTambahWarna";
             this.panelLowHigh.ResumeLayout(false);
             this.panelLowHigh.PerformLayout();

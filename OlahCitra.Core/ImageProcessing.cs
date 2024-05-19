@@ -587,7 +587,7 @@ namespace OlahCitra.Core
         public static Bitmap ColorCorrection(Bitmap input, int deltaR, int deltaG, int deltaB)
         {
             Bitmap outImage = new Bitmap(input.Width, input.Height);
-            using (Image<Bgr, byte> image = input.ToImage<Bgr, byte>().Clone())
+            using (var image = input.ToImage<Bgr, byte>().Clone())
             using (Image<Bgr, byte> result = new Image<Bgr, byte>(image.Width, image.Height))
             {
                 for (int x = 0; x < image.Width; x++)
