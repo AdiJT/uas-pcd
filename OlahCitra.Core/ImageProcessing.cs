@@ -842,16 +842,16 @@ namespace OlahCitra.Core
             }
 
             var random = new Random();
-            var colorLabels = new List<Bgr>();
+            var colorLabels = new List<Bgra>();
             for (int i = 0; i < blobs.Count; i++)
             {
                 var randR = random.Next(0, 256);
                 var randG = random.Next(0, 256);
                 var randB = random.Next(0, 256);
-                colorLabels.Add(new Bgr(randB, randG, randR));
+                colorLabels.Add(new Bgra(randB, randG, randR, 255));
             }
 
-            using (var result = original.ToImage<Bgr, byte>())
+            using (var result = original.ToImage<Bgra, byte>())
             {
                 var blobImages = new List<Bitmap>();
                 var kernel = CvInvoke.GetStructuringElement(ElementShape.Rectangle, new Size(5, 5), new Point(-1, -1));
@@ -861,12 +861,14 @@ namespace OlahCitra.Core
                     var blob = blobs[i];
 
                     var image = new Bitmap(original.Width, original.Height);
-                    using(var g = Graphics.FromImage(image))
+
+                    using (var g = Graphics.FromImage(image))
                         g.Clear(Color.Black);
 
                     foreach (var point in blob)
                         image.SetPixel(point.X, point.Y, Color.White);
 
+                    using (var bgraImage = image.ToImage<Bgra, byte>())
                     using (var gray = image.ToImage<Gray, byte>())
                     using (var countur = new Matrix<byte>(gray.Rows, gray.Cols))
                     {
@@ -887,11 +889,11 @@ namespace OlahCitra.Core
 
                         CvInvoke.PutText(
                             result,
-                            $"Luas : {(int)luas[i]} m2",
+                            $"{(int)luas[i]}m2",
                             origin,
                             FontFace.HersheyPlain,
                             2,
-                            new MCvScalar(0, 0, 0),
+                            new MCvScalar(0, 0, 0, 255),
                             3);
                     }
                 }
@@ -907,6 +909,23 @@ namespace OlahCitra.Core
             var images = originals.Select(b => b.ToImage<Bgr, byte>()).ToList();
             var outImage = new Bitmap(originals[0].Width, originals[0].Height);
             using (var result = images[0])
+            {
+                foreach (var image in images)
+                {
+                    CvInvoke.BitwiseOr(result, image, result);
+                }
+
+                outImage = result.ToBitmap();
+            }
+
+            return outImage;
+        }
+
+        public static Bitmap CombineWithOrBiner(List<Bitmap> originals)
+        {
+            var images = originals.Select(b => b.ToImage<Gray, byte>()).ToList();
+            var outImage = new Bitmap(originals[0].Width, originals[0].Height);
+            using (var result = images[0].Clone())
             {
                 foreach (var image in images)
                 {

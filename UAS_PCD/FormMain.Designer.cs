@@ -30,6 +30,7 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonUji = new System.Windows.Forms.Button();
             this.buttonUlang = new System.Windows.Forms.Button();
             this.dataGridViewHasil = new System.Windows.Forms.DataGridView();
             this.No = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -38,6 +39,8 @@
             this.Hasil = new System.Windows.Forms.DataGridViewImageColumn();
             this.StepButton = new System.Windows.Forms.DataGridViewButtonColumn();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.buttonSimpan = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHasil)).BeginInit();
@@ -62,12 +65,24 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.buttonSimpan);
+            this.panel1.Controls.Add(this.buttonUji);
             this.panel1.Controls.Add(this.buttonUlang);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(794, 34);
             this.panel1.TabIndex = 0;
+            // 
+            // buttonUji
+            // 
+            this.buttonUji.Location = new System.Drawing.Point(138, 3);
+            this.buttonUji.Name = "buttonUji";
+            this.buttonUji.Size = new System.Drawing.Size(123, 23);
+            this.buttonUji.TabIndex = 1;
+            this.buttonUji.Text = "Uji";
+            this.buttonUji.UseVisualStyleBackColor = true;
+            this.buttonUji.Click += new System.EventHandler(this.buttonUji_Click);
             // 
             // buttonUlang
             // 
@@ -81,6 +96,7 @@
             // 
             // dataGridViewHasil
             // 
+            this.dataGridViewHasil.AllowUserToAddRows = false;
             this.dataGridViewHasil.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewHasil.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridViewHasil.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -144,6 +160,16 @@
             this.progressBar1.Size = new System.Drawing.Size(794, 24);
             this.progressBar1.TabIndex = 2;
             // 
+            // buttonSimpan
+            // 
+            this.buttonSimpan.Location = new System.Drawing.Point(662, 8);
+            this.buttonSimpan.Name = "buttonSimpan";
+            this.buttonSimpan.Size = new System.Drawing.Size(123, 23);
+            this.buttonSimpan.TabIndex = 2;
+            this.buttonSimpan.Text = "Simpan";
+            this.buttonSimpan.UseVisualStyleBackColor = true;
+            this.buttonSimpan.Click += new System.EventHandler(this.buttonSimpan_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -174,5 +200,8 @@
         private System.Windows.Forms.DataGridViewImageColumn Hasil;
         private System.Windows.Forms.DataGridViewButtonColumn StepButton;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Button buttonUji;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.Button buttonSimpan;
     }
 }

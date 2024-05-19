@@ -20,6 +20,7 @@ namespace UAS_PCD
         }
 
         private FormOptions _formOptions = new FormOptions();
+        private FormUji _formUji = new FormUji();
         private readonly double _skala = 0.01834;
         private List<Result> _daftarHasil = new List<Result>();
 
@@ -37,6 +38,7 @@ namespace UAS_PCD
         {
             public string NamaFile { get; set; }
             public Bitmap Original { get; set; }
+            public Bitmap Segmentasi { get; set; }
             public Bitmap Hasil { get; set; }
             public Dictionary<string, Bitmap> Step { get; set; }
         }
@@ -89,7 +91,7 @@ namespace UAS_PCD
 
             foreach (var result in results)
             {
-                var colorCorrected = ImageProcessing.ColorCorrection(result.Original, 0, 0, 5);
+                var colorCorrected = ImageProcessing.ColorCorrection(result.Original, 10, 10, 20);
 
                 var segmentationResult = new List<(Bitmap mask, Bitmap result)>();
 
@@ -120,6 +122,7 @@ namespace UAS_PCD
                 result.Step.Add($"Blob Detection", CombineImage(blobImages, 4, result.Original.Size));
                 result.Step.Add("Kombinasi", combination);
                 result.Step.Add($"Hasil", hasil);
+                result.Segmentasi = ImageProcessing.CombineWithOrBiner(closings);
                 result.Hasil = hasil;
 
                 progress.Report((int)(1d / results.Count * 100d));
@@ -187,6 +190,26 @@ namespace UAS_PCD
                 var formDetail = new FormDetail();
                 formDetail.SetImages(_daftarHasil[e.RowIndex].Step);
                 formDetail.ShowDialog();
+            }
+        }
+
+        private void buttonUji_Click(object sender, EventArgs e)
+        {
+            _formUji.Data = _daftarHasil.Select(r => (r.Original, r.Segmentasi)).ToList();
+            _formUji.ShowDialog();
+        }
+
+        private void buttonSimpan_Click(object sender, EventArgs e)
+        {
+            if(folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            {
+                var folderPath = folderBrowserDialog1.SelectedPath;
+
+                var fileNames = _daftarHasil.Select(r => $"{folderPath}\\{r.NamaFile.Split('\\')[r.NamaFile.Split('\\').Length - 1]}")
+                    .ToList();
+
+                for(int i = 0; i < _daftarHasil.Count; i++)
+                    _daftarHasil[i].Hasil.Save(fileNames[i]);
             }
         }
     }
