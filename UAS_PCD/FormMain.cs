@@ -185,12 +185,17 @@ namespace UAS_PCD
 
         private void dataGridViewHasil_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 4 || e.RowIndex != _daftarHasil.Count)
+            if (dataGridViewHasil.Rows.Count > 0 && e.RowIndex >= 0 && e.RowIndex < dataGridViewHasil.Rows.Count - 1 && e.ColumnIndex == 4)
             {
                 var formDetail = new FormDetail();
                 formDetail.SetImages(_daftarHasil[e.RowIndex].Step);
                 formDetail.ShowDialog();
             }
+            else
+            {
+                MessageBox.Show("Tidak ada data untuk ditampilkan atau klik diluar kolom yang valid.");
+            }
+
         }
 
         private void buttonUji_Click(object sender, EventArgs e)

@@ -30,6 +30,7 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonSimpan = new System.Windows.Forms.Button();
             this.buttonUji = new System.Windows.Forms.Button();
             this.buttonUlang = new System.Windows.Forms.Button();
             this.dataGridViewHasil = new System.Windows.Forms.DataGridView();
@@ -40,7 +41,6 @@
             this.StepButton = new System.Windows.Forms.DataGridViewButtonColumn();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.buttonSimpan = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHasil)).BeginInit();
@@ -73,6 +73,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(794, 34);
             this.panel1.TabIndex = 0;
+            // 
+            // buttonSimpan
+            // 
+            this.buttonSimpan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSimpan.Location = new System.Drawing.Point(662, 8);
+            this.buttonSimpan.Name = "buttonSimpan";
+            this.buttonSimpan.Size = new System.Drawing.Size(123, 23);
+            this.buttonSimpan.TabIndex = 2;
+            this.buttonSimpan.Text = "Simpan";
+            this.buttonSimpan.UseVisualStyleBackColor = true;
+            this.buttonSimpan.Click += new System.EventHandler(this.buttonSimpan_Click);
             // 
             // buttonUji
             // 
@@ -159,16 +170,6 @@
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(794, 24);
             this.progressBar1.TabIndex = 2;
-            // 
-            // buttonSimpan
-            // 
-            this.buttonSimpan.Location = new System.Drawing.Point(662, 8);
-            this.buttonSimpan.Name = "buttonSimpan";
-            this.buttonSimpan.Size = new System.Drawing.Size(123, 23);
-            this.buttonSimpan.TabIndex = 2;
-            this.buttonSimpan.Text = "Simpan";
-            this.buttonSimpan.UseVisualStyleBackColor = true;
-            this.buttonSimpan.Click += new System.EventHandler(this.buttonSimpan_Click);
             // 
             // FormMain
             // 

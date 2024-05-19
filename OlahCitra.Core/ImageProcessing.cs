@@ -887,14 +887,24 @@ namespace OlahCitra.Core
                         if ((result.Width - origin.X) <= 200)
                             origin.X -= 230;
 
+                        //border
                         CvInvoke.PutText(
                             result,
-                            $"{(int)luas[i]}m2",
+                            $"Luas : {(int)luas[i]} m2",
                             origin,
                             FontFace.HersheyPlain,
                             2,
-                            new MCvScalar(0, 0, 0, 255),
-                            3);
+                            new MCvScalar(0, 0, 0), // Warna hitam
+                            5);
+
+                        CvInvoke.PutText(
+                            result,
+                            $"Luas : {(int)luas[i]} m2",
+                            origin,
+                            FontFace.HersheyPlain,
+                            2,
+                            new MCvScalar(255, 255, 255), //putih
+                            2);
                     }
                 }
 
